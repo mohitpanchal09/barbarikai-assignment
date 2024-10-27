@@ -3,7 +3,6 @@ import Call from "@/components/call";
 import FinancialJourney from "@/components/financial-journey";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/hero-section"
-import { NavbarDemo } from "@/components/Navbar";
 import ParallaxBanner from "@/components/parallax-component";
 
 

@@ -3,8 +3,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Inter, Shantell_Sans } from "next/font/google"; // Import the cursive font
 import { NavbarDemo } from "@/components/Navbar";
-import Footer from "@/components/Footer";
-
 
 
 const inter = Inter({ subsets: ['latin'] });

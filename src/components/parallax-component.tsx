@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import {
   Parallax,
-  ParallaxBanner,
+
   ParallaxProvider,
 } from "react-scroll-parallax";
 
@@ -25,11 +25,11 @@ export default function CustomParallaxBanner() {
 <Parallax speed={50} style={{marginTop:'-300px'}}>
   <div >
 <h1 className="text-xl lg:text-4xl font-semibold text-center ">
-If I can do it, why can't you?
+If I can do it, why can&apos;t you?
 
       </h1>
       <p className="text-center">
-      Earning a secondary income isn’t as hard as most people think. The challenge is, most people simply don’t know the right approach
+      Earning a secondary income isn&apos;t as hard as most people think. The challenge is, most people simply don&apos;t know the right approach
           </p>
           </div>
 </Parallax>
