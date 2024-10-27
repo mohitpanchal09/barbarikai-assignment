@@ -1,17 +1,15 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
+import { Inter, Shantell_Sans } from "next/font/google"; // Import the cursive font
+import { NavbarDemo } from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+
+
+const inter = Inter({ subsets: ['latin'] });
+const shantellSans = Shantell_Sans({ subsets: ['latin'] }); // Add Shantell Sans
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,9 +24,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.className} ${shantellSans.className} antialiased`}
       >
-        {children}
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NavbarDemo/>
+            {children}
+   
+          </ThemeProvider>
+        
       </body>
     </html>
   );
