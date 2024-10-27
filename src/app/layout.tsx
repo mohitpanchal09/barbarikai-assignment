@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/providers/theme-provider";
 import { Inter, Shantell_Sans } from "next/font/google"; // Import the cursive font
 import { NavbarDemo } from "@/components/Navbar";
 
@@ -24,16 +23,10 @@ export default function RootLayout({
       <body
         className={`${inter.className} ${shantellSans.className} antialiased`}
       >
-        <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
+     
             <NavbarDemo/>
             {children}
    
-          </ThemeProvider>
         
       </body>
     </html>
