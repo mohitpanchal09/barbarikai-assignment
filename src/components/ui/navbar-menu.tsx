@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Link , { LinkProps }from "next/link";
 import Image from "next/image";
@@ -19,19 +19,22 @@ export const MenuItem = ({
   active,
   item,
   children,
+  icon
 }: {
   setActive: (item: string) => void;
   active: string | null;
   item: string;
   children?: React.ReactNode;
+  icon?:React.ReactNode
 }) => {
   return (
     <div onMouseEnter={() => setActive(item)} className="relative ">
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white "
+        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white gap-x-10"
       >
-        {item}
+      <p className="hidden sm:block">{item}</p> 
+        <p className="block sm:hidden text-gray-500">{icon}</p>
       </motion.p>
       {active !== null && (
         <motion.div
@@ -68,11 +71,22 @@ export const Menu = ({
   setActive: (item: string | null) => void;
   children: React.ReactNode;
 }) => {
+  const [blur, setBlur] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setBlur(window.scrollY > 0 ? 12 : 0); // Set blur to 12px if scrolled, otherwise 0px
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className="relative rounded-full shadow-lg border border-transparent  shadow-input flex justify-evenly lg:justify-between items-center px-6 h-14"
-      style={{backdropFilter:'blur(12px)'}}
+      className={`relative rounded-full border border-transparent flex justify-evenly lg:justify-between items-center px-6 h-14 ${ blur>0 ? "shadow-lg" : "shadow-none"
+      }`}
+      style={{ backdropFilter: `blur(${blur}px)`,transition: "backdrop-filter 0.3s ease, box-shadow 0.3s ease", }}
     >
       
       <Profile/>
