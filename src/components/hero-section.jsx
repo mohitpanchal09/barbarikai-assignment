@@ -53,10 +53,11 @@ function HeroSection() {
           Leverage cutting-edge AI to fast-track your financial success. I’ll
           guide you every step of the way to build a prosperous future.
         </div>
-        <Button variant={"wealth"} className="py-2">
+        
+      </div>
+      <Button variant={"wealth"} className="py-2">
           Grow my wealth <MoveRight />
         </Button>
-      </div>
     </div>
   );
 }

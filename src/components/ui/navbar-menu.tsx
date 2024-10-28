@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import Link , { LinkProps }from "next/link";
+import Link, { LinkProps } from "next/link";
 import Image from "next/image";
 import Profile from "../Profile";
 
@@ -25,16 +25,28 @@ export const MenuItem = ({
   active: string | null;
   item: string;
   children?: React.ReactNode;
-  icon?:React.ReactNode
+  icon?: React.ReactNode
 }) => {
+  const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    if (!isClient) {
+        return null; // Or a loading spinner
+    }
+
   return (
     <div onMouseEnter={() => setActive(item)} className="relative ">
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] dark:text-white gap-x-10"
+        className={`cursor-pointer ${item=="Home" ?"text-black":"text-gray-500" }  hover:opacity-[0.9] dark:text-white gap-x-10`}
       >
-      <p className="hidden sm:block">{item}</p> 
-        <p className="block sm:hidden text-gray-500">{icon}</p>
+        <p className="hidden sm:block">{item == "Home" ? <div><p>{item}</p><p> <svg width="50" height="5" viewBox="-1 -1 106 5" fill="none" id="svg-1423532814_339">
+          <path d="M0 2.72237C24.2418 1.76576 48.412 0.526469 72.7351 0.164971C82.3943 0.0214119 92.1273 -0.0844867 101.79 0.0933197C102.78 0.111545 105.354 0.0798553 103.101 0.242132" stroke="#2A292E" stroke-width="2" stroke-linecap="round"></path>
+        </svg></p></div> : item}</p>
+        <p className={`block sm:hidden ${item=="Home" ?"text-black":"text-gray-500" }`}>{icon}</p>
       </motion.p>
       {active !== null && (
         <motion.div
@@ -84,14 +96,14 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className={`relative rounded-full border border-transparent flex justify-evenly lg:justify-between items-center px-6 h-14 ${ blur>0 ? "shadow-lg" : "shadow-none"
-      }`}
-      style={{ backdropFilter: `blur(${blur}px)`,transition: "backdrop-filter 0.3s ease, box-shadow 0.3s ease", }}
+      className={`relative rounded-full border border-transparent flex justify-evenly lg:justify-between items-center px-6 h-14 ${blur > 0 ? "shadow-lg" : "shadow-none"
+        }`}
+      style={{ backdropFilter: `blur(${blur}px)`, transition: "backdrop-filter 0.3s ease, box-shadow 0.3s ease", }}
     >
-      
-      <Profile/>
+
+      <Profile />
       <div className="flex space-x-4 px-8 py-6">
-      {children}
+        {children}
       </div>
     </nav>
   );
