@@ -128,6 +128,9 @@ const config = {
         fourth: 'moveHorizontal 40s ease infinite',
         fifth: 'moveInCircle 20s ease infinite',
       },
+      boxShadow: {
+        'custom-lg': '0 4px 6px rgba(0, 0, 0, 0.1), 0 -4px 6px rgba(0, 0, 0, 0.1), 4px 0 6px rgba(0, 0, 0, 0.1), -4px 0 6px rgba(0, 0, 0, 0.1)',
+      }
     },
   },
   plugins: [require('tailwindcss-animate')],
